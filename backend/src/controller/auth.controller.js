@@ -9,7 +9,7 @@ export const signup = async (req, res) => {
         if(!fullName || !email || !password){
             return res.status(400).json({message: "All fields are required" });
         }
-
+        
         if(password.length < 6) {
             return res.status(400).json({message: "Password must be atleast 6 character"});
         }
@@ -21,20 +21,26 @@ export const signup = async (req, res) => {
 
        const user = await User.findOne({email});
        if(user) return res.status(400).json({message: "Email already exists"})
-
+       
         //123456 => $dnjasdkasj_?dmsakmk
         const salt = await bcrypt.genSalt(10)
         const hasshedPassword = await bcrypt.hash(password,salt)
-
+        
         const newUser = new User({
             fullName,
             email,
             password:hasshedPassword
-        })
-
+        });
+          
         if(newUser){
-            generateToken(newUser._id, res);
-            await newUser.save();
+            // Before CR:
+            // generateToken(newUser._id, res);
+            // await newUser.save();
+
+            // After CR:
+            // Persist user first, then issue auth cookie
+        const savedUser = await newUser.save();
+        generateToken(savedUser._id, res);
 
             res.status(201).json({
                 _id: newUser._id,
@@ -42,6 +48,7 @@ export const signup = async (req, res) => {
                 email: newUser.fullName,
                 profilePic: newUser.profilePic,
             });
+            // todo: send a welcome email to user
         } else {
             res.status(400).json({ message: "Invalid user data"});
 
