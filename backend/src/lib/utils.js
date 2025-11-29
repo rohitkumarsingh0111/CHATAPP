@@ -1,4 +1,5 @@
 import jwt from "jsonwebToken"
+import {ENV } from "../lib/env.js"
 
 export const generateToken = (userId,res) => {
     const { JWT_SECRET } = ENV;
