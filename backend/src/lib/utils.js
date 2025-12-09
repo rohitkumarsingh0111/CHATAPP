@@ -1,4 +1,4 @@
-import jwt from "jsonwebToken"
+import jwt from "jsonwebtoken"
 import {ENV } from "../lib/env.js"
 
 export const generateToken = (userId,res) => {
