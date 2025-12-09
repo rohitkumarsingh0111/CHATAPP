@@ -8,25 +8,23 @@ export const app = express();
 export const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: {
-    origin: [
-      ENV.CLIENT_URL || "http://localhost:5173",
-      "http://127.0.0.1:5173",
+  cors: { origin: [
+      ENV.CLIENT_URL || "http://localhost:5173", "http://127.0.0.1:5173",
     ],
-    credentials: true,
-    methods: ["GET", "POST"],
+    credentials: true, methods: ["GET", "POST"],
   },
 });
 
-// Important: userSocketMap BEFORE getReceiverSocketId
-const userSocketMap = {}; // { userId: socketId }
+// Socket Auth Middleware
+io.use(socketAuthMiddleware);
+
 
 export function getReceiverSocketId(userId) {
   return userSocketMap[userId];
 }
 
-// Socket Auth Middleware
-io.use(socketAuthMiddleware);
+// Important: userSocketMap BEFORE getReceiverSocketId
+const userSocketMap = {}; // { userId: socketId }
 
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.user?.fullName);
