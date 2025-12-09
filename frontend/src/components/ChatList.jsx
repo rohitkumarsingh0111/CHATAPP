@@ -17,17 +17,17 @@ function ChatList() {
   return(
     <>
    {chats.map((chat) => (
-      <div key={chat.id} className="bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors" 
-      onClick={() => setSelectedUser(chats)}
+      <div key={chat._id} className="bg-cyan-400/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-300/20 transition-colors" 
+      onClick={() => setSelectedUser(chat)}
       >
         <div className="flex items-center gap-3">
           {/* TODO: FIX THIS ONLINE STATUS AND MAKE IT WORK WITH SOCKET */}
           <div className="{`avatar online`}">
             <div className="size-12 rounded-full">
-              <img src={chat.profilepic || "/avatar.png"} alt={chat.fullName} />
+              <img src={chat.profilepic || "/avatar.png"} alt={chat.fullName} className="rounded-lg"/>
             </div>
           </div>
-          <h4 className="text-slate-200 font-medium truncate">{chat.fullName}</h4>
+          <h4 className="text-slate-100 font-medium truncate">{chat.fullName}</h4>
         </div>
       </div>
    ))}
