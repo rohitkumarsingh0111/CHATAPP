@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import {useChatStore} from "../store/useChatStore";
 import UserLoadingSkeloton from "./UserLoadingSkeleton";
 import NoChatsFound from "./NoChatsFound";
+import { useAuthStore } from "../store/useAuthStore";
 
 function ChatList() {
 
   const { getMyChatPartners, chats, isUserLoading, setSelectedUser } = useChatStore();
+  const { onlineUsers } = useAuthStore();
 
   useEffect(() => {
     getMyChatPartners()
@@ -22,7 +24,7 @@ function ChatList() {
       >
         <div className="flex items-center gap-3">
           {/* TODO: FIX THIS ONLINE STATUS AND MAKE IT WORK WITH SOCKET */}
-          <div className="{`avatar online`}">
+          <div className={`avatar ${onlineUsers.includes(chat._id) ? "online": "offline"}`}>
             <div className="size-12 rounded-full">
               <img src={chat.profilepic || "/avatar.png"} alt={chat.fullName} className="rounded-lg"/>
             </div>
