@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: chatapp-backend
+    env: node
+    rootDir: backend
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "node src/server.js"
+    nodeVersion: "20"
+    numInstances: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: EMAIL_FROM_NAME
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: ARCJET_KEY
+        sync: false
+      - key: ARCJET_ENV
+        sync: false
