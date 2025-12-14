@@ -12,17 +12,17 @@ export const socketAuthMiddleware = async (socket, next) => {
 
     if (!token) {
       console.log("Socket connection rejected: No token provided");
-      return next(new Error("Unauthorized - No Token Provided"));
+      return next(new Error("Unauthorized - Token Not Provided"));
     }
 
-    // verify the token
+    // verify the token 
     const decoded = jwt.verify(token, ENV.JWT_SECRET);
     if (!decoded) {
       console.log("Socket connection rejected: Invalid token");
       return next(new Error("Unauthorized - Invalid Token"));
     }
 
-    // find the user fromdb
+    // find the user from db
     const user = await User.findById(decoded.userId).select("-password");
     if (!user) {
       console.log("Socket connection rejected: User not found");
