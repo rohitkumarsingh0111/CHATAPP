@@ -21,7 +21,7 @@ This short demo shows authentication, real-time messaging, and core app flow.
 
 <!-- Replace the link below with your GitHub uploaded video or YouTube link -->
 
-[https://github.com/rohitkumarsingh0111/CHATAPP/assets/Chat-App-demo.mp4](https://github.com/rohitkumarsingh0111/CHATAPP/assets/Chat-App-demo.mp4)
+[https://github.com/rohitkumarsingh0111/CHATAPP/assets/Chat-App_demo.mp4](https://github.com/rohitkumarsingh0111/CHATAPP/tree/main/frontend/public/Chat-App_demo.mp4)
 
 ---
 
