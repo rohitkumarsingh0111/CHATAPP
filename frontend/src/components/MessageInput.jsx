@@ -70,7 +70,7 @@ const handleImageChange = (e)=> {
                 setText(e.target.value)
                 isSoundEnabled && playRandomStrokeSound();
             }}
-            className='flex-1 bg-slate-800/20 border-slate-700/10 rounded-lg py-2 px-4' 
+            className='flex-1 bg-slate-800/20 border-slate-700/10 rounded-lg py-2 px-2' 
             placeholder='Type your message...'
             />
 
@@ -84,20 +84,29 @@ const handleImageChange = (e)=> {
             <button
             type='button'
             onClick={() => fileInputRef.current?.click()}
-            className={`bg-slate-800/50 text-slate-400 hover:text-slate-200 rounded-lg px-4 transition-colors ${
+            className={`bg-slate-800/50 text-slate-400 hover:text-slate-200 rounded-lg px-2 transition-colors ${
                 imagePreview ? "text-cyan-500" : ""
             }`}
             >
-                <ImageIcon className='w-5 h-5' />
+                <ImageIcon className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
-            <button
-            type='submit'
-            disabled={!text.trim() && !imagePreview}
-            className='bg-gradient-to-r from-cyan-600 text-white rounded-lg px-4 py-2
-            font-medium hover:from-cyan-600 hover: to-cyan-700 transition-all disabled:opacity-500 disabled:cursor-not-allowed'>
-                <SendIcon className='w-5 h-5' />
-            </button>
+             <button
+    type="submit"
+    disabled={!text.trim() && !imagePreview}
+    className="
+      bg-gradient-to-r from-cyan-600 to-cyan-700
+      text-white rounded-lg
+      px-3 sm:px-4 py-2
+      font-medium
+      transition-all
+      disabled:opacity-50 disabled:cursor-not-allowed
+      shrink-0
+    "
+  >
+    <SendIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+  </button>
+
         </form>
 
     </div>
