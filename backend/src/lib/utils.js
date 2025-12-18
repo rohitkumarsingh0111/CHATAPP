@@ -12,7 +12,7 @@ export const generateToken = (userId, res) => {
 
   res.cookie("jwt", token, {
   httpOnly: true,
-  sameSite: "none",   // ✅ REQUIRED for Vercel + Render
+  sameSite: "lax",   // ✅ REQUIRED for Vercel + Render
   secure: true,       // ✅ REQUIRED when sameSite = none
   maxAge: 7 * 24 * 60 * 60 * 1000,
 });
