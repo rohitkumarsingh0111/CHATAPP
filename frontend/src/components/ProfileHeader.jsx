@@ -56,7 +56,7 @@ function ProfileHeader() {
         </div>
 {/* USERNAME & ONLINE TEXT */}
         <div>
-          <h3 className="text-slave-200 font-medium text-base max-w-[180px] truncate">
+          <h3 className="text-slave-700 font-medium text-base max-w-[180px] truncate">
             {authUser.fullName}
           </h3>
 
